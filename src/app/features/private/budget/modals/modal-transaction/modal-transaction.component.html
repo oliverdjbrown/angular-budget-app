@@ -1,0 +1,45 @@
+<div class="modal-header">
+  <h4 class="modal-title">Transacciones</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss()"
+  ></button>
+</div>
+<div class="modal-body">
+  <table id="print" class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">T. Transacción</th>
+        <th scope="col">Categoría</th>
+        <th scope="col">Monto</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Nota</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transaction of transactions$ | async">
+        <th scope="row">{{ transaction.id }}</th>
+        <td>{{ transaction.typeTransaction | transactionType }}</td>
+        <td>{{ transaction.categoryId | category }}</td>
+        <td>{{ transaction.amount | number : "1.2-2" }}</td>
+        <td>{{ transaction.date | date : "dd-MM-yyyy" }}</td>
+        <td>{{ transaction.note }}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th scope="col" colspan="3">Total</th>
+        <th scope="col" colspan="3">{{ transactions$ | async | sum : "amount" | number: '1.2-2' }}</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<div class="modal-footer">
+  <button type="button" [print]="['print']" class="btn btn-primary">
+    <icon [iconName]="'bi-printer'"></icon>
+    Imprimir
+  </button>  
+</div>

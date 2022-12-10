@@ -1,0 +1,11 @@
+<button
+  type="button"
+  (click)="openModal()"
+  class="btn"
+  [ngClass]="{    
+    'btn-success': (balance$ | async)! > 0,
+    'btn-danger': (balance$ | async)! < 0
+  }"
+>
+  Balance RD$: {{ balance$ | async | number : "1.2-2" }}
+</button>

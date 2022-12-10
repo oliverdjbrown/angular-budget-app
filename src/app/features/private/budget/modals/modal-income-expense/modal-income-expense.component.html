@@ -1,0 +1,62 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    {{ "Registro de" }}
+    {{ selectedTransaction === typeTransaction.incomes ? "Ingreso" : "Gasto" }}
+  </h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss()"
+  ></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form">
+    <div class="mb-3">
+      <label for="amount-name" class="col-form-label">Monto:</label>
+      <input
+        type="number"
+        min="0"
+        class="form-control"
+        id="amount-name"
+        formControlName="amount"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="category-name" class="col-form-label">Categoría:</label>
+      <select
+        class="form-select"
+        aria-label="Selecciona una categoría"
+        formControlName="categoryId"
+      >
+        <option
+          *ngFor="let category of categories$ | async"
+          [value]="category.id"
+        >
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="note-text" class="col-form-label">Nota:</label>
+      <textarea
+        maxlength="100"
+        placeholder="El comentario es opcional"
+        class="form-control"
+        id="note-text"
+        formControlName="note"
+      ></textarea>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="saveTransaction()"
+    [disabled]="form.invalid"
+  >    
+    <icon [iconName]="'bi-save'"></icon>
+    Guardar
+  </button>
+</div>
