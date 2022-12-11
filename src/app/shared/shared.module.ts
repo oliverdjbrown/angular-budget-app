@@ -8,19 +8,23 @@ import { ButtonActionComponent } from './components/button-action/button-action.
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SumPipe } from './pipes/sum.pipe';
 import { NgxPrintElementModule } from 'ngx-print-element';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { ChartComponent } from './components/chart/chart.component';
 
 const components = [
   IconComponent,
   ButtonExpenseComponent,
   TopbarComponent,
   BalanceStatusComponent,
-  ButtonActionComponent
+  ButtonActionComponent,
+  ChartComponent
 ];
 
 const libraries = [  
   ReactiveFormsModule,
   FormsModule,
-  NgxPrintElementModule
+  NgxPrintElementModule,
+  NgApexchartsModule
 ]
 
 const pipes = [
